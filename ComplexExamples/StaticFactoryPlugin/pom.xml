@@ -4,9 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.maciejgiza.effective.complex.static-factory</groupId>
-    <artifactId>complex.static-factory</artifactId>
+    <groupId>com.maciejgiza.effective.complex.static-factory.plugin</groupId>
+    <artifactId>complex.static-factory.plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.maciejgiza.effective.complex.static-factory</groupId>
+            <artifactId>complex.static-factory</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,9 +30,8 @@
                     <target>1.9</target>
                 </configuration>
             </plugin>
+
         </plugins>
-
     </build>
-
 
 </project>
