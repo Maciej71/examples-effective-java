@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 import static org.junit.Assert.*;
 
-public class StaticFactory {
+public class StaticFactoryTest {
 
   @Test
   public void simpleTest() {
