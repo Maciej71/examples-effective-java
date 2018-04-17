@@ -83,4 +83,36 @@ public class SingletonTest {
       e.printStackTrace();
     }
   }
+
+  @Test
+  public void enumSingletonTest() {
+    assertSame(EnumSingleton.INSTANCE, EnumSingleton.INSTANCE);
+  }
+
+  @Test(expected = NoSuchMethodException.class)
+  public void enumSingletonReflectionTest()
+      throws NoSuchMethodException, IllegalAccessException, InvocationTargetException,
+          InstantiationException {
+    Constructor<EnumSingleton> constructor = EnumSingleton.class.getDeclaredConstructor();
+    constructor.setAccessible(true);
+
+    constructor.newInstance();
+  }
+
+  @Test
+  public void enumSingletonSerializationTest() {
+    EnumSingleton instanceOne = EnumSingleton.INSTANCE;
+
+    try {
+      ObjectOutput output = new ObjectOutputStream(new FileOutputStream("serialSingletonEnum.txt"));
+      output.writeObject(instanceOne);
+      output.close();
+      ObjectInput input = new ObjectInputStream(new FileInputStream("serialSingletonEnum.txt"));
+      EnumSingleton instanceTwo = (EnumSingleton) input.readObject();
+
+      assertSame(instanceOne, instanceTwo);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 }
