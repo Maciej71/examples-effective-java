@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class SerializationFlaw implements Serializable {
   public static final SerializationFlaw INSTANCE = new SerializationFlaw();
-  private SerializationFlaw() {};
+  private SerializationFlaw() {}
 
   public static SerializationFlaw getInstance() {
     return INSTANCE;
