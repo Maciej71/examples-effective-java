@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 public class SupplierFactory {
-  private Supplier<FirstName> firstNameSuplier = FirstName::new;
+  private Supplier<FirstName> firstNameSupplier = FirstName::new;
   private Supplier<LastName> lastNameSupplier = LastName::new;
 
   public List<String> createNames(int amount) {
@@ -14,7 +14,7 @@ public class SupplierFactory {
     List<String> result = new ArrayList<>();
 
     IntStream.range(0, amount)
-        .forEach(i -> result.add(create(firstNameSuplier) + " " + create(lastNameSupplier)));
+        .forEach(i -> result.add(create(firstNameSupplier) + " " + create(lastNameSupplier)));
 
     return result;
   }
