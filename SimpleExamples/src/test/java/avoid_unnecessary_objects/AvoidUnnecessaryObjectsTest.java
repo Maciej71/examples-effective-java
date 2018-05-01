@@ -1,9 +1,16 @@
 package avoid_unnecessary_objects;
 
+import com.google.common.collect.Iterables;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openjdk.jmh.results.RunResult;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.RunnerException;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +20,7 @@ import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-public class avoidUnnecessaryObjectsTest {
+public class AvoidUnnecessaryObjectsTest {
 
   @Test
   public void immutableTest() {
@@ -36,9 +43,7 @@ public class avoidUnnecessaryObjectsTest {
   public void preferStaticFactoryTest() {
 
     List<PreferStaticFactory> generatedWithConstructor =
-        IntStream.range(1, 5)
-            .mapToObj(i -> new PreferStaticFactory())
-            .collect(Collectors.toList());
+        IntStream.range(1, 5).mapToObj(i -> new PreferStaticFactory()).collect(Collectors.toList());
 
     List<PreferStaticFactory> generatedWithFactory =
         IntStream.range(1, 5)
@@ -59,5 +64,15 @@ public class avoidUnnecessaryObjectsTest {
 
     Assert.assertEquals(4, numberOfObjectFromConstructor);
     Assert.assertEquals(0, numberOfObjectFromFactory);
+  }
+
+  @Test
+  public void expansiveObjectsTest() throws RunnerException {
+    Options opt = new OptionsBuilder().include(JmhBenchmark.class.getSimpleName()).build();
+    Collection<RunResult> runResults = new Runner(opt).run();
+
+    assertTrue(
+        Iterables.get(runResults, 0).getPrimaryResult().getScore()
+            > Iterables.get(runResults, 1).getPrimaryResult().getScore());
   }
 }
