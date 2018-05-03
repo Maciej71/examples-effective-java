@@ -9,16 +9,12 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class AvoidUnnecessaryObjectsTest {
 
@@ -74,5 +70,23 @@ public class AvoidUnnecessaryObjectsTest {
     assertTrue(
         Iterables.get(runResults, 0).getPrimaryResult().getScore()
             > Iterables.get(runResults, 1).getPrimaryResult().getScore());
+  }
+
+  @Test
+  public void adapterTest() {
+    Adapter adapter = new Adapter();
+    Set beforeHeroAdd = adapter.getKeys();
+    int beforeSize = beforeHeroAdd.size();
+
+    assertSame(adapter.getKeys(), adapter.getKeys());
+
+    adapter.addHero();
+    Set afterHeroAdd = adapter.getKeys();
+    int afterSize = afterHeroAdd.size();
+
+    assertSame(adapter.getKeys(), adapter.getKeys());
+
+    assertSame(beforeHeroAdd, afterHeroAdd);
+    assertNotEquals(beforeSize, afterSize);
   }
 }
