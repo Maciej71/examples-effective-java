@@ -8,7 +8,7 @@ import org.openjdk.jmh.annotations.Mode;
 import java.util.stream.IntStream;
 
 @BenchmarkMode(Mode.AverageTime)
-public class JmhBenchmark {
+public class JmhExpensiveObjects {
   @Benchmark
   @Fork(1)
   public static void executionTimeExpensive() {

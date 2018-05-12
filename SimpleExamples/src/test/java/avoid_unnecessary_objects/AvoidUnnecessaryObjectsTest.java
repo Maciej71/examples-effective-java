@@ -64,13 +64,17 @@ public class AvoidUnnecessaryObjectsTest {
 
   @Test
   public void expansiveObjectsTest() throws RunnerException {
-    Options opt = new OptionsBuilder().include(JmhBenchmark.class.getSimpleName()).build();
-    Collection<RunResult> runResults = new Runner(opt).run();
-
-    assertTrue(
-        Iterables.get(runResults, 0).getPrimaryResult().getScore()
-            > Iterables.get(runResults, 1).getPrimaryResult().getScore());
+    final double[] results = this.jmhRun(JmhExpensiveObjects.class.getSimpleName());
+    assertTrue(results[0] > results[1]);
   }
+
+  @Test
+  public void autoboxingTest() throws RunnerException {
+    final double[] results = this.jmhRun(JmhAutobixing.class.getSimpleName());
+    assertTrue(results[0] > results[1]);
+  }
+
+
 
   @Test
   public void adapterTest() {
@@ -88,5 +92,14 @@ public class AvoidUnnecessaryObjectsTest {
 
     assertSame(beforeHeroAdd, afterHeroAdd);
     assertNotEquals(beforeSize, afterSize);
+  }
+
+  private double[] jmhRun(final String classSimpleName) throws RunnerException {
+    final double[] result = new double[2];
+    Options opt = new OptionsBuilder().include(classSimpleName).build();
+    Collection<RunResult> runResults = new Runner(opt).run();
+    result[0] = Iterables.get(runResults, 0).getPrimaryResult().getScore();
+    result[1] = Iterables.get(runResults, 1).getPrimaryResult().getScore();
+    return result;
   }
 }
