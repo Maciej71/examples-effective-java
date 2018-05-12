@@ -2,14 +2,13 @@ package avoid_unnecessary_objects;
 
 import java.util.AbstractMap;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Adapter {
-  private final Map backingObject =
-      new HashMap(
+  private final HashMap<Integer, String> backingObject =
+      new HashMap<>(
           Stream.of(
                   new AbstractMap.SimpleEntry<>(0, "Thanos"),
                   new AbstractMap.SimpleEntry<>(1, "Thor"),
@@ -17,7 +16,7 @@ public class Adapter {
                   new AbstractMap.SimpleEntry<>(3, "Doctor Strange"),
                   new AbstractMap.SimpleEntry<>(4, "Rocket"),
                   new AbstractMap.SimpleEntry<>(5, "Gamora"))
-              .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, (hero) -> hero.getValue())));
+              .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
 
   public Set getKeys() {
     return this.backingObject.keySet();
