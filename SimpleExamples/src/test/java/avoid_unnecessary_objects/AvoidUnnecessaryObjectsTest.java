@@ -69,14 +69,6 @@ public class AvoidUnnecessaryObjectsTest {
   }
 
   @Test
-  public void autoboxingTest() throws RunnerException {
-    final double[] results = this.jmhRun(JmhAutobixing.class.getSimpleName());
-    assertTrue(results[0] > results[1]);
-  }
-
-
-
-  @Test
   public void adapterTest() {
     Adapter adapter = new Adapter();
     Set beforeHeroAdd = adapter.getKeys();
@@ -92,6 +84,12 @@ public class AvoidUnnecessaryObjectsTest {
 
     assertSame(beforeHeroAdd, afterHeroAdd);
     assertNotEquals(beforeSize, afterSize);
+  }
+
+  @Test
+  public void autoboxingTest() throws RunnerException {
+    final double[] results = this.jmhRun(JmhAutobixing.class.getSimpleName());
+    assertTrue(results[0] > results[1]);
   }
 
   private double[] jmhRun(final String classSimpleName) throws RunnerException {
