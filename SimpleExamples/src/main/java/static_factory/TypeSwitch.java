@@ -2,11 +2,11 @@ package static_factory;
 
 class TypeSwitch {
 
-  static Color switchColor(final AvaliableColors color) {
-    return color == AvaliableColors.GREEN ? new Blue() : new Green();
+  static Color switchColor(final AvailableColors color) {
+    return color == AvailableColors.GREEN ? new Blue() : new Green();
   }
 
-  enum AvaliableColors {
+  enum AvailableColors {
     BLUE,
     GREEN
   }

@@ -8,8 +8,8 @@ public class TypeSwitchTest {
   @Test
   public void switchColor_ShouldSwitchColors() {
 
-    final var green = TypeSwitch.switchColor(TypeSwitch.AvaliableColors.BLUE);
-    final var blue = TypeSwitch.switchColor(TypeSwitch.AvaliableColors.GREEN);
+    final var green = TypeSwitch.switchColor(TypeSwitch.AvailableColors.BLUE);
+    final var blue = TypeSwitch.switchColor(TypeSwitch.AvailableColors.GREEN);
 
     assertTrue(green instanceof TypeSwitch.Green);
     assertTrue(blue instanceof TypeSwitch.Blue);
