@@ -2,10 +2,10 @@ package builder;
 
 import java.util.Objects;
 
-public class ConcreteImpRequiredLvl extends AbstractDeveloperBuilder {
+public class DeveloperWithRequiredLvl extends AbstractDeveloperBuilder {
   private final Level level;
 
-  private ConcreteImpRequiredLvl(Builder builder) {
+  private DeveloperWithRequiredLvl(Builder builder) {
     super(builder);
     level = builder.level;
   }
@@ -28,8 +28,8 @@ public class ConcreteImpRequiredLvl extends AbstractDeveloperBuilder {
     }
 
     @Override
-    public ConcreteImpRequiredLvl build() {
-      return new ConcreteImpRequiredLvl(this);
+    public DeveloperWithRequiredLvl build() {
+      return new DeveloperWithRequiredLvl(this);
     }
 
     @Override

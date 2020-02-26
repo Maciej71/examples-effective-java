@@ -1,10 +1,10 @@
 package builder;
 
 
-public class ConcreteImpWithAdditionalParameter extends AbstractDeveloperBuilder {
+public class DeveloperWithAdditionalParameter extends AbstractDeveloperBuilder {
   private final boolean englishSpeaking;
 
-  private ConcreteImpWithAdditionalParameter(Builder builder) {
+  private DeveloperWithAdditionalParameter(Builder builder) {
     super(builder);
     englishSpeaking = builder.englishSpeaking;
   }
@@ -23,8 +23,8 @@ public class ConcreteImpWithAdditionalParameter extends AbstractDeveloperBuilder
     }
 
     @Override
-    public ConcreteImpWithAdditionalParameter build() {
-      return new ConcreteImpWithAdditionalParameter(this);
+    public DeveloperWithAdditionalParameter build() {
+      return new DeveloperWithAdditionalParameter(this);
     }
 
     @Override

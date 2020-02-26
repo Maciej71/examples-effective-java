@@ -1,12 +1,12 @@
 package builder;
 
-public class SimpleBookInNumbers {
+public class BookInNumbersWithInvariantsCheck {
   private final int pages;
   private final int year;
   private final int chapters;
   private final int rank;
 
-  private SimpleBookInNumbers(Builder builder) {
+  private BookInNumbersWithInvariantsCheck(Builder builder) {
     pages = builder.pages;
     year = builder.year;
     chapters = builder.chapters;
@@ -51,8 +51,8 @@ public class SimpleBookInNumbers {
       return this;
     }
 
-    public SimpleBookInNumbers build() {
-      return new SimpleBookInNumbers(this);
+    public BookInNumbersWithInvariantsCheck build() {
+      return new BookInNumbersWithInvariantsCheck(this);
     }
   }
 }
